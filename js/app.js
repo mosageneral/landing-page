@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     SetClickForList(); //Socond We Add The Click Event to The 'li' element
 
-    var Section1 = document.getElementById('section1');
+    let Section1 = document.getElementById('section1');
 
 
     Section1.classList.add('your-active-class'); // Add Active To The First Section 
@@ -62,12 +62,17 @@ function BuildNav() {
  Then We Add The Requierd Attrs for The Oparations 
  */
     for (let i = 1; i <= SectionCount; i++) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        let SectionId = document.getElementById('section'+i);
         li.appendChild(a);
         li.setAttribute("data-section", "#section" + i);
         li.setAttribute("id", "navLink" + i);
-        a.setAttribute("href", "#section" + i);
+        //Here We Add Click Event For The 'li' Tag And Adds The behavior Of The Function As Smooth
+        li.addEventListener("click", ()=>{
+            SectionId.scrollIntoView({behavior: "smooth"})
+          });
+       
         a.setAttribute("class", "button");
         a.text="Section " + i
      
@@ -92,7 +97,7 @@ function AddActiveClass() {
     const el = document.querySelectorAll('section');
     el.forEach(element =>element.classList.remove('your-active-class'));
   //Then We Add Active Clase For The Selected Section
-    var elemnt = document.querySelector(this.dataset.section);
+    let elemnt = document.querySelector(this.dataset.section);
     elemnt.classList.add("your-active-class");
     const elLink = document.querySelectorAll('a');
     elLink.forEach(element =>{
@@ -101,7 +106,7 @@ function AddActiveClass() {
         element.classList.add('button')
     });
    
-   var liElement =   document.getElementById(this.id);
+   let liElement =   document.getElementById(this.id);
    liElement.children[0].classList.remove('button');
    liElement.children[0].classList.add('selectedLink');
 }
