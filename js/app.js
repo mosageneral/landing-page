@@ -142,7 +142,7 @@ let isInViewport = function(elem) {
   
   window.addEventListener('scroll', function(event) {
 
-  findMe.forEach(element => {
+    AllSection.forEach(element => {
      
       if (isInViewport(element)) {
       
