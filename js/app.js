@@ -14,14 +14,14 @@
 */
 
 /**
- * Define Global Variables
+ * Define Global letiables
 */
 
-let SectionCount = 0; // The Count Of The sections Count Variable
-let NavBar = document.querySelector("#navbar__list"); // The Nav Bar Selector As Variable 
+let SectionCount = 0; // The Count Of The sections Count letiable
+let NavBar = document.querySelector("#navbar__list"); // The Nav Bar Selector As letiable 
 
 /**
- * End Global Variables
+ * End Global letiables
  * Start Helper Functions 
 */
 function GetSectionCount() {
@@ -89,6 +89,9 @@ function SetClickForList() {
     }
 }
 
+//Add Active Class On Scroll
+
+
 // Add class 'active' to section when near top of viewport
 
 function AddActiveClass() {
@@ -123,6 +126,42 @@ function AddActiveClass() {
 
 // Scroll to section on link click
 
-// Set sections as active
+// Set Li as active On Scroll
+let isInViewport = function(elem) {
+    let distance = elem.getBoundingClientRect();
+    return (
+      distance.top >= 0 &&
+      distance.left >= 0 &&
+      distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
+  
+  
+  let AllSection = document.querySelectorAll('section');
+  
+  window.addEventListener('scroll', function(event) {
 
+  findMe.forEach(element => {
+     
+      if (isInViewport(element)) {
+      
+        
+      console.log(element.dataset.li)
+      let NavItemId = '#'+element.dataset.li+' a';
+      let NavItem = document.querySelector(NavItemId)
+      let AllNavItems = document.querySelectorAll('li a')
+      AllNavItems.forEach(element =>{
+          element.classList.remove('selectedLink')
+          element.classList.add('button')
+        
+        });
+      NavItem.classList.remove('button')
+      NavItem.classList.add('selectedLink')
+      console.log(NavItem)
 
+      }
+  });
+  
+  }, false);
+  
